@@ -1,6 +1,5 @@
 import React from "react";
 import { GenericPage, NextPageWithLayout } from "@infrastructure/types/pages/base";
-import { Box } from "@components/primitives/Box/Box";
 import Error from "../../pages/_error";
 
 export const withNextPageError = <T,>(Component: React.FunctionComponent<T>) => {
@@ -9,9 +8,9 @@ export const withNextPageError = <T,>(Component: React.FunctionComponent<T>) => 
 
 		if (error)
 			return (
-				<Box>
+				<div>
 					<Error {...error} />
-				</Box>
+				</div>
 			);
 
 		return <Component {...props} />;
