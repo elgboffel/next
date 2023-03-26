@@ -5,7 +5,7 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Next - tRPC - Vanilla Extract boilerplate</title>
+				<title>Next</title>
 				<meta name="description" content="" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
