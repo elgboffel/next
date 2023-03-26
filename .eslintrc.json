@@ -27,6 +27,7 @@
 			"plugins": ["@typescript-eslint"],
 			"extends": ["plugin:@typescript-eslint/recommended"],
 			"rules": {
+				"import/no-anonymous-default-export": "off",
 				//Used for eslint fix and remove all unused imports
 				"unused-imports/no-unused-imports": "error",
 				// We have to turn these off so we can type check generated files
