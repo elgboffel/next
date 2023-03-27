@@ -12,6 +12,11 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 /** @type {import("next").NextConfig} */
 let nextConfig = {
+
+	experimental: {
+		appDir: true,
+	},
+
 	reactStrictMode: true,
 
 	swcMinify: true,
