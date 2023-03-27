@@ -9,7 +9,7 @@ const Home: NextPage = () => {
 				<meta name="description" content="" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			Index page
+			Index Page
 		</>
 	);
 };
