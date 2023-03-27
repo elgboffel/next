@@ -16,6 +16,7 @@ const Site = ({ Component, pageProps }: AppPropsWithLayout) => {
 		<SessionProvider session={pageProps.session}>
 			<Provider>
 				<HydrateAtomsProvider initialValues={[]}>
+					{vart}
 					<NextNProgress
 						color={"#000"}
 						startPosition={0.3}
