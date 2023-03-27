@@ -10,6 +10,7 @@
     "test": "vitest",
     "codegen:openapi": "dotenv -- cross-var openapi-generator-cli generate -i %CONTENT_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce/checkout --global-property models --additional-properties=supportsES6=true,npmVersion=9.2.0 -a API-Authorization:%CONTENT_READ_ONLY_TOKEN% --skip-validate-spec && npm run codegen:commerce-checkout-replace-backwards-slash && npm run codegen:lint-fix",
     "codegen:graphql": "graphql-codegen -r dotenv/config --config ./graphql-codegen.config.yml && npm run codegen:lint-fix",
+    "codegen:commerce": "dotenv -- cross-var openapi-generator-cli generate -i %COMMERCE_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce --global-property models --additional-properties=supportsES6=true,npmVersion=9.6.2 && npm run codegen:lint-fix",
     "codegen:lint-fix": "cross-var eslint \"src/infrastructure/types/generated/**/*.ts\" --fix --no-ignore && cross-var prettier --write \"src/infrastructure/types/generated/**/*.{ts,md}\"",
     "codegen:clean": "rimraf cross-var %CODEGEN_ROOT_FOLDER_PATH%/* -Recurse",
     "typecheck": "tsc --project tsconfig.json --pretty --noEmit",
