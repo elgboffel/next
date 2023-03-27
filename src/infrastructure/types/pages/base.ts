@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
+import { Session } from "next-auth";
 import { AppErrorType } from "@infrastructure/errors/types";
 
 export type PageContextBase = GetStaticPropsContext & {
@@ -16,7 +17,7 @@ export type Page<Page, Context, Data> = GenericPage & {
 	page: Page | null;
 	context: Context | null;
 	data: Data | null;
-	session: never;
+	session: Session | null;
 };
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
