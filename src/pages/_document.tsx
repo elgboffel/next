@@ -1,5 +1,6 @@
 import React from "react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import { theme } from "@styles/theme.css";
 class Document extends NextDocument {
 	render() {
 		return (
@@ -11,7 +12,7 @@ class Document extends NextDocument {
 						rel="stylesheet"
 					/>
 				</Head>
-				<body>
+				<body className={theme}>
 					<Main />
 					<NextScript />
 				</body>
