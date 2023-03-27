@@ -1,6 +1,8 @@
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
+const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
+const withVanillaExtract = createVanillaExtractPlugin();
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -67,7 +69,7 @@ const shouldAnalyzeBundles = process.env.ANALYZE;
 
 if (shouldAnalyzeBundles) {
 	const withNextBundleAnalyzer = require("@next/bundle-analyzer")();
-	nextConfig = withNextBundleAnalyzer(nextConfig);
+	nextConfig = withVanillaExtract(withNextBundleAnalyzer(nextConfig));
 }
 
-export default nextConfig;
+export default withVanillaExtract(nextConfig);
