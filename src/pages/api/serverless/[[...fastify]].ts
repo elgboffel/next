@@ -1,19 +1,20 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import Fastify from "fastify";
+import Fastify, { FastifyInstance } from "fastify";
+import { Server, IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const app = Fastify({
+const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = Fastify({
 	logger: true,
 });
 
 // Prefix everything with current path
-app.register(import("@server/root"), {
+server.register(import("@server/root"), {
 	prefix: "/api/serverless",
 });
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	await app.ready();
-	app.server.emit("request", req, res);
+	await server.ready();
+	server.server.emit("request", req, res);
 };

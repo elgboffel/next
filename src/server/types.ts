@@ -1,3 +1,5 @@
-export type GenericParams<T> = {
+import { RequestGenericInterface } from "fastify";
+
+export type GenericParams<T> = RequestGenericInterface & {
 	Params: T;
 };
