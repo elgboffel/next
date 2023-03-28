@@ -1,6 +1,13 @@
 import { FastifyInstance } from "fastify";
-import { example } from "@server/feature/example/example";
+import { exampleRoute } from "@server/feature/example/route";
+import swagger from "@fastify/swagger";
+import swaggerUI from "@fastify/swagger-ui";
+import { swaggerOptions } from "@server/config/swagger-options";
 
-export default async function (instance: FastifyInstance) {
-	instance.register(example);
+export default async function (server: FastifyInstance) {
+	await server.register(swagger);
+
+	await server.register(swaggerUI, swaggerOptions);
+
+	server.register(exampleRoute);
 }
