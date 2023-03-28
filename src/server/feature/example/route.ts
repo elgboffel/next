@@ -1,23 +1,21 @@
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance, RequestGenericInterface } from "fastify";
+import { HelloQuerySchema, HelloQueryType, HelloReplySchema, HelloReplyType } from "@server/feature/example/schema";
 
-interface QueryString {
-	name: string;
-}
+type GetHello = RequestGenericInterface & {
+	Reply: HelloReplyType;
+};
 
-interface Params {
-	name: string;
-}
+type GetHelloQuerystring = RequestGenericInterface & {
+	Querystring: HelloQueryType;
+};
 
-interface CustomRouteGenericParam {
-	Params: Params;
-}
-
-interface CustomRouteGenericQuery {
-	Querystring: QueryString;
-}
+type GetHelloParams = RequestGenericInterface & {
+	Params: HelloQueryType;
+	Reply: HelloReplyType;
+};
 
 export const exampleRoute = async (server: FastifyInstance) => {
-	server.get("/", async (req, res) => {
+	server.get<GetHello>("/", { schema: { response: { 200: HelloReplySchema } } }, async (req, res) => {
 		res.status(200).send({
 			hello: "World",
 		});
@@ -25,15 +23,23 @@ export const exampleRoute = async (server: FastifyInstance) => {
 
 	server.register(
 		async (server: FastifyInstance) => {
-			server.get("/", async (req: FastifyRequest<CustomRouteGenericQuery>, res) => {
-				const { name = "" } = req.query;
-				res.status(200).send(`Hello ${name}`);
-			});
+			server.get<GetHelloQuerystring>(
+				"/",
+				{ schema: { querystring: HelloQuerySchema, response: { 200: HelloReplySchema } } },
+				async (req, res) => {
+					const { name = "" } = req.query;
+					res.status(200).send(`Hello ${name}`);
+				}
+			);
 
-			server.get("/:name", async (req: FastifyRequest<CustomRouteGenericParam>, res) => {
-				const { name = "" } = req.params;
-				res.status(200).send({ hello: name });
-			});
+			server.get<GetHelloParams>(
+				"/:name",
+				{ schema: { params: HelloQuerySchema, response: { 200: HelloReplySchema } } },
+				async (req, res) => {
+					const { name = "" } = req.params;
+					res.status(200).send({ hello: name });
+				}
+			);
 		},
 		{
 			prefix: "/hello",
