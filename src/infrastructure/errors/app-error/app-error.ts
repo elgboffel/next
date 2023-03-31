@@ -1,4 +1,4 @@
-﻿import { AppErrorType, ErrorMessage } from "@infrastructure/errors/types";
+import { AppErrorType, ErrorMessage } from "@infrastructure/errors/types";
 
 export class AppError implements AppErrorType {
 	constructor(error: any) {
