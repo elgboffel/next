@@ -2,7 +2,7 @@ import { AppError } from "@infrastructure/errors/app-error";
 
 export type ErrorHandlers = {
 	response?: (response: Response) => AppError;
-	catch?: (error: unknown) => Promise<AppError>;
+	catch?: (error: any) => Promise<AppError>;
 };
 
 export type FetcherArgs = {

@@ -2,9 +2,17 @@
 
 export class AppError implements ErrorType {
 	constructor(error: any) {
-		if (error instanceof Error) this.serializeError(error);
-		else if (this.isErrorType(error)) this.serializeErrorType(error);
-		else this.invalidErrorType(error);
+		if (error instanceof Error) {
+			this.serializeError(error);
+			return;
+		}
+
+		if (this.isErrorType(error)) {
+			this.serializeErrorType(error);
+			return;
+		}
+
+		this.invalidErrorType(error);
 	}
 
 	serializeError(error: Error) {
