@@ -1,27 +1,35 @@
-﻿const baseInit: RequestInit = {
-	headers: {
-		Accept: "application/json, text/plain, */*",
-		"Content-Type": "application/json",
-	},
+import { AppError } from "@infrastructure/errors/app-error";
+
+export type ErrorHandlers = {
+	response?: (response: Response) => AppError;
+	catch?: (error: unknown) => Promise<AppError>;
 };
 
-export const fetcher = async (input: string, init?: RequestInit): Promise<Response> => {
-	console.info("FETCHER REQUEST\n", {
-		url: input,
-		...baseInit,
-		...init,
-		headers: {
-			...baseInit.headers,
-			...init?.headers,
-		},
-	});
-
-	return fetch(input, {
-		...baseInit,
-		...init,
-		headers: {
-			...baseInit.headers,
-			...init?.headers,
-		},
-	});
+export type FetcherArgs = {
+	url: string;
+	config?: RequestInit;
+	errorHandlers?: ErrorHandlers;
 };
+
+export async function fetcher<TResponse>({
+	url,
+	config,
+	errorHandlers = {},
+}: FetcherArgs): Promise<TResponse | AppError> {
+	try {
+		const response = await fetch(url, config);
+
+		const json = await response.json();
+
+		if (response.status !== 200) {
+			if (errorHandlers.response) return Promise.reject(errorHandlers.response(response));
+			return Promise.reject(new AppError(json));
+		}
+
+		return json;
+	} catch (error: any) {
+		if (errorHandlers.catch) return Promise.reject(errorHandlers.catch(error));
+
+		return Promise.reject(new AppError(error));
+	}
+}
