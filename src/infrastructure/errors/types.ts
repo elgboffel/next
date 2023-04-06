@@ -1,4 +1,4 @@
-export type ErrorType = {
+export type AppErrorType = {
 	raw: string | null;
 	url: string | null;
 	isSuccess: boolean | null;

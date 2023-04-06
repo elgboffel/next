@@ -1,18 +1,18 @@
-﻿import { ErrorType } from "@infrastructure/errors/types";
+﻿import { AppErrorType } from "@infrastructure/errors/types";
 
-export class AppError implements ErrorType {
+export class AppError implements AppErrorType {
 	constructor(error: any) {
 		if (error instanceof Error) {
 			this.serializeError(error);
 			return;
 		}
 
-		if (this.isErrorType(error)) {
-			this.serializeErrorType(error);
+		if (this.isAppErrorType(error)) {
+			this.serializeAppErrorType(error);
 			return;
 		}
 
-		this.invalidErrorType(error);
+		this.invalidError(error);
 	}
 
 	serializeError(error: Error) {
@@ -23,7 +23,7 @@ export class AppError implements ErrorType {
 		this.code = 500;
 	}
 
-	serializeErrorType(error: ErrorType) {
+	serializeAppErrorType(error: AppErrorType) {
 		this.isSuccess = error?.isSuccess ?? null;
 		this.raw = error?.raw ?? null;
 		this.url = error?.url ?? null;
@@ -31,11 +31,11 @@ export class AppError implements ErrorType {
 		this.message = error?.message ?? null;
 	}
 
-	private invalidErrorType(error: any) {
+	private invalidError(error: any) {
 		throw new Error(`AppError: Error type not supported`, error);
 	}
 
-	private isErrorType(obj: any) {
+	private isAppErrorType(obj: any) {
 		return "error" in obj && "isSuccess" in obj && "raw" in obj && "url" in obj && "message" in obj && "code" in obj;
 	}
 
