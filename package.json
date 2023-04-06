@@ -12,7 +12,7 @@
     "codegen:lint-fix": "cross-var eslint \"src/infrastructure/types/generated/**/*.ts\" --fix --no-ignore && cross-var prettier --write \"src/infrastructure/types/generated/**/*.{ts,md}\"",
     "codegen:clean-commerce": "rimraf cross-var %CODEGEN_ROOT_FOLDER_PATH%/commerce* -Recurse",
     "typecheck": "tsc --project tsconfig.json --pretty --noEmit",
-    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,mjs,cjs,json,graphql}\" --fix",
+		"lint": "eslint \"src/**/*.{ts,tsx,js,jsx,mjs,cjs,json,graphql}\" --fix",
     "prettier": "prettier --write \"src/**/*.{css,scss,sass,ts,tsx,js,jsx,md,json,graphql,mjs,cjs}\"",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
@@ -33,6 +33,7 @@
     "react-hook-form": "7.43.7",
     "server-only": "0.0.1",
     "swr": "2.1.1",
+    "turbo": "1.8.8",
     "zod": "3.21.4"
   },
   "devDependencies": {

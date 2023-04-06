@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
-import { BaseError } from "@infrastructure/errors/types";
+import { AppErrorType } from "@infrastructure/errors/types";
 
 export type PageContextBase = GetStaticPropsContext & {
 	dictionary?: never;
@@ -9,7 +9,7 @@ export type PageContextBase = GetStaticPropsContext & {
 };
 
 export type GenericPage = {
-	error?: BaseError;
+	error?: AppErrorType;
 };
 
 export type Page<Page, Context, Data> = GenericPage & {
