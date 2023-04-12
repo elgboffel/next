@@ -1,16 +1,16 @@
 import { RouteHandler } from "fastify";
-import { GenericParams } from "@server/types";
+import { GetProductsQueryType } from "@server/feature/products/schema";
+import { ProductListViewModel } from "@infrastructure/types/generated/commerce/models/ProductListViewModel";
+import { GenericRouteHandler } from "@server/types";
 
-export type GetContextHandlerParams = {
-	id: string;
-};
+export type GetProductsHandler = GenericRouteHandler<GetProductsQueryType, ProductListViewModel>;
 
-export const getProductCollection: RouteHandler<GenericParams<GetContextHandlerParams>> = async (request, reply) => {
-	const id = request.params.id;
+export const getProducts: RouteHandler<GetProductsHandler> = async (request, reply) => {
+	const repositoryName = request.params.repositoryName;
 
-	const area = await fetch(`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/content/areas/${id}`).then((res) =>
-		res.json()
-	);
+	const area = await fetch(
+		`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/ecommerce/products?RepositoryName=${repositoryName}`
+	).then((res) => res.json());
 
 	reply.send(area);
 };

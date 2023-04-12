@@ -1,11 +1,9 @@
 import { RouteHandler } from "fastify";
 import { GetContextQueryType } from "@server/feature/context/schema";
 import { AreaInfoViewModel } from "@infrastructure/types/generated/commerce/models/AreaInfoViewModel";
+import { GenericRouteHandler } from "@server/types";
 
-export type GetContextHandler = {
-	Params: GetContextQueryType;
-	Reply: AreaInfoViewModel;
-};
+export type GetContextHandler = GenericRouteHandler<GetContextQueryType, AreaInfoViewModel>;
 
 export const getContext: RouteHandler<GetContextHandler> = async (request, reply) => {
 	const id = request.params.id;
