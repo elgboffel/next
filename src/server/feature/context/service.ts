@@ -8,9 +8,9 @@ export type GetContextHandler = GenericRouteHandler<GetContextQueryType, AreaInf
 export const getContext: RouteHandler<GetContextHandler> = async (request, reply) => {
 	const id = request.params.id;
 
-	const area: AreaInfoViewModel = await fetch(
-		`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/content/areas/${id}`
-	).then((res) => res.json());
+	const res: AreaInfoViewModel = await fetch(`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/content/areas/${id}`).then(
+		(res) => res.json()
+	);
 
-	reply.send(area);
+	reply.send(res);
 };

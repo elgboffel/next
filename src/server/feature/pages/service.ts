@@ -8,9 +8,9 @@ export type GetPagesHandler = GenericRouteHandler<GetPagesQueryType, PageInfoVie
 export const getPages: RouteHandler<GetPagesHandler> = async (request, reply) => {
 	const repositoryName = request.params.areaId;
 
-	const area = await fetch(
-		`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/content/pages?areaId=${repositoryName}`
-	).then((res) => res.json());
+	const res = await fetch(`http://kruso.dw10demo.dynamicweb-cms.com/dwapi/content/pages?areaId=${repositoryName}`).then(
+		(res) => res.json()
+	);
 
-	reply.send(area);
+	reply.send(res);
 };
