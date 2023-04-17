@@ -76,15 +76,6 @@
     "npm": "9.6.2"
   },
   "packageManager": "npm@9.4.2",
-  "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --cache --fix"
-    ],
-    "./src/**/*.{md,json}": [
-      "prettier --write"
-    ]
-  },
   "volta": {
     "node": "18.15.0",
     "npm": "9.6.2"

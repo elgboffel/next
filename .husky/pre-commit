@@ -8,5 +8,5 @@ then
 else
   echo "FE Changes detected, running FE Git Hooks"
   cd src/ || exit
-  npm run typecheck && npx lint-staged -q
+  npm run typecheck && npm run lint && npm run prettier
 fi
