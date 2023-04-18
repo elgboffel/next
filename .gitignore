@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+.test
 
 # database
 /prisma/db.sqlite
@@ -54,3 +55,5 @@ schema.graphql
 
 # Turbopack
 .turbo
+
+

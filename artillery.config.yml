@@ -1,0 +1,20 @@
+config:
+  target: "http://localhost:3000/api/serverless"
+  phases:
+    - duration: 10
+      arrivalRate: 1000
+      name: Warm up
+#    - duration: 60
+#      arrivalRate: 5
+#      rampTo: 50
+#      name: Ramp up load
+#    - duration: 600
+#      arrivalRate: 50
+#      name: Sustained load
+#  headers:
+#    Authorization: "Bearer <your-access-token>"
+scenarios:
+  - name: get-page
+    flow:
+      - get:
+          url: "/pages/114"
