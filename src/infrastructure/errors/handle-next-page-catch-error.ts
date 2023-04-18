@@ -1,4 +1,4 @@
-import { AppError } from "@infrastructure/errors/app-error";
+import { AppError } from "@infrastructure/errors/app-error/app-error";
 
 export const handleNextPageCatchError = (e: unknown) => {
 	if (e instanceof AppError) {

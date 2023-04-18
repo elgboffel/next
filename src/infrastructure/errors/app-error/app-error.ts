@@ -1,4 +1,4 @@
-﻿import { AppErrorType } from "@infrastructure/errors/types";
+﻿import { AppErrorType, ErrorMessage } from "@infrastructure/errors/types";
 
 export class AppError implements AppErrorType {
 	constructor(error: any) {
@@ -19,16 +19,16 @@ export class AppError implements AppErrorType {
 		this.isSuccess = false;
 		this.raw = error?.stack ?? null;
 		this.url = null;
-		this.message = error?.message ?? null;
-		this.code = 500;
+		this.message = error?.message ? { code: null, value: error?.message } : null;
+		this.statusCode = 500;
 	}
 
 	serializeAppErrorType(error: AppErrorType) {
 		this.isSuccess = error?.isSuccess ?? null;
 		this.raw = error?.raw ?? null;
 		this.url = error?.url ?? null;
-		this.code = error?.code ?? null;
-		this.message = error?.message ?? null;
+		this.statusCode = error?.statusCode ?? null;
+		this.message = error.message ?? null;
 	}
 
 	private invalidError(error: any) {
@@ -42,6 +42,6 @@ export class AppError implements AppErrorType {
 	isSuccess: boolean | null = null;
 	raw: string | null = null;
 	url: string | null = null;
-	code: number | null = null;
-	message: string | null = null;
+	statusCode: number | null = null;
+	message: ErrorMessage | null = null;
 }

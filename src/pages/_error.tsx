@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import SEOHead from "@components/modules/SEOHead/SEOHead";
 import { AppErrorType } from "@infrastructure/errors/types";
 
-const Error: NextPage<AppErrorType> = ({ raw, code, url, ...otherProps }) => {
+const Error: NextPage<AppErrorType> = ({ raw, statusCode, url, ...otherProps }) => {
 	console.warn({ ...otherProps });
 
 	return (
@@ -11,7 +11,7 @@ const Error: NextPage<AppErrorType> = ({ raw, code, url, ...otherProps }) => {
 			<SEOHead nofollow noindex />
 
 			<div>
-				<p>{code ? `An error ${code} occurred on server` : "An error occurred on client"}</p>
+				<p>{statusCode ? `An error ${statusCode} occurred on server` : "An error occurred on client"}</p>
 				{url && <p>{url}</p>}
 				{/*{errors?.map(({ message }, index) => (*/}
 				{/*  <Text key={`error-text-${index}`} center>*/}

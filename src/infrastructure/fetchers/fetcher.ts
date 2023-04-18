@@ -1,4 +1,4 @@
-import { AppError } from "@infrastructure/errors/app-error";
+import { AppError } from "@infrastructure/errors/app-error/app-error";
 
 export type ErrorHandlers = {
 	response?: (response: Response) => AppError;

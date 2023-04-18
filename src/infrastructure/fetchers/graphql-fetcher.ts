@@ -1,7 +1,7 @@
 import { GraphQLFetcher, GraphQLResponse } from "@infrastructure/fetchers/types";
 import { stripIgnoredCharacters } from "graphql/utilities";
 import { fetcher } from "@infrastructure/fetchers/fetcher";
-import { AppError } from "@infrastructure/errors/app-error";
+import { AppError } from "@infrastructure/errors/app-error/app-error";
 
 export async function graphqlFetcher<TResponse>({
 	url,

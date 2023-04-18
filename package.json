@@ -7,6 +7,7 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
+    "test": "vitest",
     "codegen:commerce-checkout": "dotenv -- cross-var openapi-generator-cli generate -i %CENTRA_CHECKOUT_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce/checkout --global-property models --additional-properties=supportsES6=true,npmVersion=9.2.0 -a API-Authorization:%CENTRA_CHECKOUT_API_SHARED_SECRET% --skip-validate-spec && npm run codegen:commerce-checkout-replace-backwards-slash && npm run codegen:lint-fix",
     "codegen:commerce-graphql": "graphql-codegen -r dotenv/config --config ./graphql-codegen.config.yml && npm run codegen:lint-fix",
     "codegen:lint-fix": "cross-var eslint \"src/infrastructure/types/generated/**/*.ts\" --fix --no-ignore && cross-var prettier --write \"src/infrastructure/types/generated/**/*.{ts,md}\"",
@@ -17,8 +18,8 @@
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-		"artillery:test": "artillery run --config artillery.config.yml artillery.scenarios.yml",
-		"prepare": "husky install"
+    "artillery:test": "artillery run --config artillery.config.yml artillery.scenarios.yml",
+    "prepare": "husky install"
   },
   "dependencies": {
     "classnames": "2.3.2",
@@ -52,6 +53,7 @@
     "@typescript-eslint/eslint-plugin": "5.56.0",
     "@typescript-eslint/parser": "5.56.0",
     "@vanilla-extract/next-plugin": "2.1.1",
+    "@vitejs/plugin-react": "3.1.0",
     "artillery": "2.0.0-31",
     "cross-env": "7.0.3",
     "cross-var": "1.1.0",
@@ -65,13 +67,15 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-unused-imports": "2.0.0",
     "husky": "8.0.3",
+    "jsdom": "21.1.1",
     "lint-staged": "13.2.0",
     "module": "1.2.5",
     "npm-run-all": "4.1.5",
     "path": "0.12.7",
     "prettier": "2.8.7",
     "rimraf": "4.4.1",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "vitest": "0.30.1"
   },
   "engines": {
     "node": "18.15.0",
