@@ -21,6 +21,3 @@ generates:
     schema.graphql:
         plugins:
             - schema-ast
-        config:
-            includeDirectives: true
-            includeIntrospectionTypes: true
