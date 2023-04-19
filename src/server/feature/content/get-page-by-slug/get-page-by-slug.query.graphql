@@ -1,5 +1,5 @@
 query GetPageBySlug($slug: String!) {
-	pages(filters: { slug: { eq: $slug }}) {
+	pages(filters: { slug: { eq: $slug } }) {
 		data {
 			id
 			attributes {
@@ -9,6 +9,19 @@ query GetPageBySlug($slug: String!) {
 				seo {
 					metaDescription
 					metaTitle
+					shareImage {
+						data {
+							attributes {
+								alternativeText
+								formats
+								height
+								name
+								size
+								url
+								width
+							}
+						}
+					}
 				}
 			}
 		}

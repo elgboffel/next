@@ -1,5 +1,5 @@
 scenarios:
-  - name: get-page-by-slug
+  - name: get-paths
     flow:
       - get:
-          url: "/pages/114"
+          url: "/content/pages/paths"

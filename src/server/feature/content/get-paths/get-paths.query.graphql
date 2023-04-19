@@ -1,0 +1,12 @@
+query GetPaths {
+	pages {
+		data {
+			id
+			attributes {
+				locale
+				name
+				slug
+			}
+		}
+	}
+}
