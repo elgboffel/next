@@ -11,14 +11,20 @@ export type FetcherArgs = {
 	errorHandlers?: ErrorHandlers;
 };
 
+const BASE_HEADERS = {
+	Accept: "application/json, text/plain, */*",
+	"Content-Type": "application/json",
+};
+
 export async function fetcher<TResponse>({
 	url,
 	config,
 	errorHandlers = {},
 }: FetcherArgs): Promise<TResponse | AppError> {
 	try {
-		const response = await fetch(url, config);
+		Object.assign(config?.headers ?? {}, BASE_HEADERS);
 
+		const response = await fetch(url, config);
 		const json = await response.json();
 
 		if (response.status !== 200) {
