@@ -1,12 +1,16 @@
 schema:
-    - ${NEXT_PUBLIC_COMMERCE_GRAPHQL_ENDPOINT}:
+    - ${CONTENT_GQL_URL}:
           headers:
             Authorization: Bearer ${CONTENT_READ_ONLY_TOKEN}
 documents: src/**/*.graphql
 overwrite: true
 verbose: true
 generates:
-    ${CODEGEN_ROOT_FOLDER_PATH}/commerce/index.ts:
+    ${CODEGEN_ROOT_FOLDER_PATH}/content/index.ts:
+        hooks:
+            afterAllFileWrite:
+                - prettier --write
+                - eslint --fix
         plugins:
             - typescript
             - typescript-operations
@@ -17,3 +21,4 @@ generates:
     schema.graphql:
         plugins:
             - schema-ast
+

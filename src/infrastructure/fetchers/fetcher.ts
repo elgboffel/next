@@ -26,7 +26,7 @@ export async function fetcher<TResponse>({
 			return Promise.reject(new AppError(json));
 		}
 
-		return json;
+		return json as TResponse;
 	} catch (error: any) {
 		if (errorHandlers.catch) return Promise.reject(errorHandlers.catch(error));
 

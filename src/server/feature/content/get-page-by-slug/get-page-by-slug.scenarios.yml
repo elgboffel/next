@@ -1,0 +1,5 @@
+scenarios:
+  - name: get-page-by-slug
+    flow:
+      - get:
+          url: "/pages/114"

@@ -107,7 +107,7 @@
     "node": "18.15.0",
     "npm": "9.6.2"
   },
-  "packageManager": "npm@9.4.2",
+  "packageManager": "npm@9.6.2",
   "volta": {
     "node": "18.15.0",
     "npm": "9.6.2"

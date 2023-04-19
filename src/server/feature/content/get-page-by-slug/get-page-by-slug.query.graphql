@@ -1,0 +1,16 @@
+query GetPageBySlug($slug: String!) {
+	pages(filters: { slug: { eq: $slug }}) {
+		data {
+			id
+			attributes {
+				locale
+				name
+				slug
+				seo {
+					metaDescription
+					metaTitle
+				}
+			}
+		}
+	}
+}

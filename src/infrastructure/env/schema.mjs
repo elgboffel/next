@@ -40,6 +40,7 @@ export const serverEnv = {
 export const clientSchema = z.object({
 	// NEXT_PUBLIC_EXAMPLE: z.string(),
 	NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN: z.string(),
+	CONTENT_GQL_URL: z.string().url(),
 });
 
 /**
@@ -50,4 +51,7 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
 	NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN: process.env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN,
+};
+export const clientEnv = {
+	CONTENT_GQL_URL: process.env.NEXT_PUBLIC_CONTENT_GQL_URL,
 };

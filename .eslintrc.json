@@ -12,7 +12,7 @@
 	"parserOptions": {
 		"project": "./tsconfig.json"
 	},
-	"ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js", "node/*"],
+	"ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js", "node/*", "schema.graphql"],
 	"settings": {
 		"react": {
 			"version": "detect"
@@ -64,8 +64,14 @@
 		},
 		{
 			"files": ["*.graphql"],
+			"parser": "@graphql-eslint/eslint-plugin",
+			"plugins": ["@graphql-eslint"],
 			"extends": "plugin:@graphql-eslint/schema-recommended",
+			"rules": {
+				"@graphql-eslint/unique-type-names": 0
+			},
 			"parserOptions": {
+				"operations": "./src/**/*.graphql",
 				"schema": "./schema.graphql"
 			}
 		}
