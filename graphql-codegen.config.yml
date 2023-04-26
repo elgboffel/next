@@ -1,16 +1,12 @@
 schema:
     - ${NEXT_PUBLIC_COMMERCE_GRAPHQL_ENDPOINT}:
           headers:
-            Authorization: Bearer ${CENTRA_API_WRITE_TOKEN}
+            Authorization: Bearer ${CONTENT_READ_ONLY_TOKEN}
 documents: src/**/*.graphql
 overwrite: true
 verbose: true
 generates:
     ${CODEGEN_ROOT_FOLDER_PATH}/commerce/index.ts:
-        hooks:
-            afterAllFileWrite:
-                - prettier --write
-                - eslint --fix
         plugins:
             - typescript
             - typescript-operations
