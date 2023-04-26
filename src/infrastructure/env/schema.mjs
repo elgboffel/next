@@ -42,7 +42,6 @@ export const clientSchema = z.object({
 	NEXT_PUBLIC_CONTENT_GQL_URL: z.string().url(),
 	NEXT_PUBLIC_CONTENT_READ_ONLY_TOKEN: z.string(),
 	NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN: z.string(),
-	CONTENT_GQL_URL: z.string().url(),
 });
 
 /**
