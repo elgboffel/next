@@ -15,6 +15,7 @@ export const serverSchema = z.object({
 	// 	// VERCEL_URL doesn't include `https` so it cant be validated as a URL
 	// 	process.env.VERCEL ? z.string() : z.string().url()
 	// ),
+	FASTIFY_API_WRITE_TOKEN: z.string(),
 });
 
 /**
@@ -26,6 +27,7 @@ export const serverEnv = {
 	NODE_ENV: process.env.NODE_ENV,
 	// NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
 	// NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+	FASTIFY_API_WRITE_TOKEN: process.env.FASTIFY_API_WRITE_TOKEN,
 };
 
 /**
@@ -35,6 +37,7 @@ export const serverEnv = {
  */
 export const clientSchema = z.object({
 	// NEXT_PUBLIC_EXAMPLE: z.string(),
+	NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN: z.string(),
 });
 
 /**
@@ -43,4 +46,6 @@ export const clientSchema = z.object({
  * and only used environment variables are included in the build.
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
-export const clientEnv = {};
+export const clientEnv = {
+	NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN: process.env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN,
+};
