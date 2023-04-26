@@ -1,23 +1,16 @@
-import { FastifyInstance, RequestGenericInterface } from "fastify";
-import { HelloQuerySchema, HelloQueryType, HelloReplySchema, HelloReplyType } from "@server/feature/example/schema";
-
-type GetHelloParams = RequestGenericInterface & {
-	Params: HelloQueryType;
-	Reply: HelloReplyType;
-};
+import { FastifyInstance } from "fastify";
+import { helloWithName } from "@server/feature/example/hello-with-name/handler";
+import { HelloWithNameQuerySchema, HelloWithNameReplySchema } from "@server/feature/example/hello-with-name/schema";
 
 export const exampleRoute = async (server: FastifyInstance) => {
 	server.register(
 		async (server: FastifyInstance) => {
-			server.addSchema({ $id: "HelloReplySchema", ...HelloReplySchema });
+			server.addSchema({ $id: "HelloWithNameReplySchema", ...HelloWithNameReplySchema });
 
-			server.get<GetHelloParams>(
+			server.get(
 				"/:name",
-				{ schema: { params: HelloQuerySchema, response: { 200: { $ref: "HelloReplySchema#" } } } },
-				async (req, res) => {
-					const { name = "" } = req.params;
-					res.status(200).send({ hello: name });
-				}
+				{ schema: { params: HelloWithNameQuerySchema, response: { 200: { $ref: "HelloWithNameReplySchema#" } } } },
+				helloWithName
 			);
 		},
 		{

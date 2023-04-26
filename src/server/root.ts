@@ -6,14 +6,27 @@ import { swaggerOptions } from "@server/config/swagger-options";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import bearerAuthPlugin from "@fastify/bearer-auth";
 import { env } from "@infrastructure/env/server.mjs";
+import helmet from "@fastify/helmet";
+import cookie from "@fastify/cookie";
+import csrf from "@fastify/csrf-protection";
+import { securityRoute } from "@server/feature/security/route";
+import { handleCsrfRouting } from "@server/feature/security/handle-csrf-routing";
 
 const BEARER_AUTH_KEYS = new Set([env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN, env.FASTIFY_API_WRITE_TOKEN]);
 export default async function (server: FastifyInstance) {
 	server.withTypeProvider<TypeBoxTypeProvider>();
+
+	server.register(helmet, { global: true });
 	server.register(bearerAuthPlugin, { keys: BEARER_AUTH_KEYS });
+	server.register(cookie, { secret: "secret" });
+
+	await server.register(csrf);
 
 	await server.register(swagger);
 	await server.register(swaggerUI, swaggerOptions);
 
+	server.addHook("preHandler", async (request, reply) => handleCsrfRouting(server, request, reply));
+
 	server.register(exampleRoute);
+	server.register(securityRoute);
 }
