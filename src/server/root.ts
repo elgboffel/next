@@ -13,7 +13,7 @@ import caching from "@fastify/caching";
 import { examplePublicRoute } from "@server/feature/example-public/route";
 import { examplePrivateRoute } from "@server/feature/example-private/route";
 
-const BEARER_AUTH_READ_ONLY_KEYS = new Set([env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN]);
+const BEARER_AUTH_READ_ONLY_KEYS = new Set([env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN, env.FASTIFY_API_WRITE_TOKEN]);
 const BEARER_AUTH_WRITE_KEYS = new Set([env.FASTIFY_API_WRITE_TOKEN]);
 
 const ALLOW_ORIGINS = env.ALLOW_ORIGINS;
@@ -27,6 +27,7 @@ export default async function (server: FastifyInstance) {
 	/* Register default headers */
 	server.register(helmet, { global: true });
 
+	/* register CORS */
 	await server.register(cors, {
 		origin: ALLOW_ORIGINS,
 		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -51,6 +52,7 @@ export default async function (server: FastifyInstance) {
 		publicServer.register(bearerAuthPlugin, { keys: BEARER_AUTH_READ_ONLY_KEYS });
 
 		publicServer.register(examplePublicRoute);
+		publicServer.register(contentRoute);
 	};
 
 	/* Register private routes */
