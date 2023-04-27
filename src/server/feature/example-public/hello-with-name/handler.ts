@@ -1,7 +1,7 @@
 ﻿import { GenericRouteHandler } from "@server/types";
 import { AppError } from "@infrastructure/errors/app-error/app-error";
 import { RouteHandler } from "fastify";
-import { HelloWithNameQueryType, HelloWithNameReplyType } from "@server/feature/example/hello-with-name/schema";
+import { HelloWithNameQueryType, HelloWithNameReplyType } from "@server/feature/example-public/hello-with-name/schema";
 
 export type HelloWithNameHandler = GenericRouteHandler<HelloWithNameQueryType, HelloWithNameReplyType | AppError>;
 
