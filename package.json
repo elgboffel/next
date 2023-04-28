@@ -8,10 +8,10 @@
     "dev": "next dev",
     "start": "next start",
     "test": "vitest",
-    "codegen:commerce-checkout": "dotenv -- cross-var openapi-generator-cli generate -i %CONTENT_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce/checkout --global-property models --additional-properties=supportsES6=true,npmVersion=9.2.0 -a API-Authorization:%CONTENT_READ_ONLY_TOKEN% --skip-validate-spec && npm run codegen:commerce-checkout-replace-backwards-slash && npm run codegen:lint-fix",
-    "codegen:commerce-graphql": "graphql-codegen -r dotenv/config --config ./graphql-codegen.config.yml && npm run codegen:lint-fix",
+    "codegen:openapi": "dotenv -- cross-var openapi-generator-cli generate -i %CONTENT_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce/checkout --global-property models --additional-properties=supportsES6=true,npmVersion=9.2.0 -a API-Authorization:%CONTENT_READ_ONLY_TOKEN% --skip-validate-spec && npm run codegen:commerce-checkout-replace-backwards-slash && npm run codegen:lint-fix",
+    "codegen:graphql": "graphql-codegen -r dotenv/config --config ./graphql-codegen.config.yml && npm run codegen:lint-fix",
     "codegen:lint-fix": "cross-var eslint \"src/infrastructure/types/generated/**/*.ts\" --fix --no-ignore && cross-var prettier --write \"src/infrastructure/types/generated/**/*.{ts,md}\"",
-    "codegen:clean-commerce": "rimraf cross-var %CODEGEN_ROOT_FOLDER_PATH%/commerce* -Recurse",
+    "codegen:clean": "rimraf cross-var %CODEGEN_ROOT_FOLDER_PATH%/* -Recurse",
     "typecheck": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,mjs,cjs,json,graphql}\" --fix",
     "prettier": "prettier --write \"src/**/*.{css,scss,sass,ts,tsx,js,jsx,md,json,graphql,mjs,cjs}\"",
@@ -19,6 +19,10 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "artillery:test": "artillery run --config artillery.config.yml artillery.scenarios.yml",
+    "clinic:flame": "clinic flame --autocannon [ / --method GET -d 10] -- node ./node_modules/.bin/next start",
+    "clinic:doctor": "clinic doctor --autocannon [ / --method GET -d 10 ] -- node ./node_modules/.bin/next start",
+    "clinic:heap": "clinic heap --autocannon [ / --method GET -d 10 ] -- node ./node_modules/.bin/next start",
+    "clinic:bubble": "clinic bubbleprof --autocannon [ / --method GET -d 10 ] -- node ./node_modules/.bin/next start",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -35,7 +39,6 @@
     "react-hook-form": "7.43.7",
     "server-only": "0.0.1",
     "swr": "2.1.1",
-    "turbo": "1.8.8",
     "zod": "3.21.4"
   },
   "devDependencies": {
@@ -55,6 +58,7 @@
     "@vanilla-extract/next-plugin": "2.1.1",
     "@vitejs/plugin-react": "3.1.0",
     "artillery": "2.0.0-31",
+    "clinic": "12.1.0",
     "cross-env": "7.0.3",
     "cross-var": "1.1.0",
     "dotenv": "16.0.3",
@@ -74,6 +78,7 @@
     "path": "0.12.7",
     "prettier": "2.8.7",
     "rimraf": "4.4.1",
+    "turbo": "1.9.3",
     "typescript": "5.0.2",
     "vitest": "0.30.1"
   },

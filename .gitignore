@@ -56,4 +56,7 @@ schema.graphql
 # Turbopack
 .turbo
 
+#clinic.js
+.clinic
+
 
