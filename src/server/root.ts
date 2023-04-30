@@ -8,6 +8,7 @@ import { env } from "@infrastructure/env/server.mjs";
 import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
 import cors from "@fastify/cors";
+import sensible from "@fastify/sensible";
 import { examplePublicRoute } from "@server/feature/example-public/route";
 import { examplePrivateRoute } from "@server/feature/example-private/route";
 
@@ -17,8 +18,10 @@ const BEARER_AUTH_WRITE_KEYS = new Set([env.FASTIFY_API_WRITE_TOKEN]);
 const ALLOW_ORIGINS = "//localhost:3000, //localhost:1337";
 
 export default async function (server: FastifyInstance) {
-	/* Add type provider */
 	server.withTypeProvider<TypeBoxTypeProvider>();
+
+	/* Register defaults for Fastify */
+	server.register(sensible);
 
 	/* Register default headers */
 	server.register(helmet, { global: true });
@@ -29,13 +32,11 @@ export default async function (server: FastifyInstance) {
 		credentials: true, // Allow cookies to be sent with CORS requests
 	});
 
-	/* Register rate limit */
 	await server.register(rateLimit, {
 		max: 100,
 		timeWindow: "1 minute",
 	});
 
-	/* Register swagger */
 	await server.register(swagger);
 	await server.register(swaggerUI, swaggerOptions);
 
