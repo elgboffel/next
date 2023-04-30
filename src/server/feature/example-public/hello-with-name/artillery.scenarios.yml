@@ -1,0 +1,5 @@
+scenarios:
+  - name: hello-with-name
+    flow:
+      - get:
+          url: "/public/hello/test-name"
