@@ -1,7 +1,7 @@
 import { RouteHandler } from "fastify";
 import { GenericRouteHandler } from "@server/types";
-import { OrderViewModel } from "@infrastructure/types/generated/commerce/models/OrderViewModel";
 import { CreateCartRequestType } from "@server/feature/cart/schema";
+import { OrderViewModel } from "@infrastructure/types/generated/commerce/models/OrderViewModel";
 
 export type CreateCartHandler = GenericRouteHandler<CreateCartRequestType, OrderViewModel>;
 

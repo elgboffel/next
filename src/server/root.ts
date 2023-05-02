@@ -57,7 +57,6 @@ export default async function (server: FastifyInstance) {
 		publicServer.register(examplePublicRoute);
 		publicServer.register(productsRoute);
 		publicServer.register(pagesRoute);
-
 	};
 
 	/* Register private routes */
