@@ -69,7 +69,7 @@ const shouldAnalyzeBundles = process.env.ANALYZE;
 
 if (shouldAnalyzeBundles) {
 	const withNextBundleAnalyzer = require("@next/bundle-analyzer")();
-	nextConfig = withVanillaExtract(withNextBundleAnalyzer(nextConfig));
+	nextConfig = withNextBundleAnalyzer(nextConfig);
 }
 
 export default withVanillaExtract(nextConfig);
