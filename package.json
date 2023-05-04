@@ -18,7 +18,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-    "artillery": "artillery run --config artillery.config.yml src/server/feature/example-public/hello-with-name/artillery.scenarios.yml",
+    "artillery": "dotenv -- artillery run -e production --config artillery.config.yml src/server/feature/example-public/hello-with-name/artillery.scenarios.yml",
     "clinic:flame": "clinic flame --autocannon [ /api/serverless/public/hello/name --method GET -d 10 ] -- node ./node_modules/.bin/next start",
     "clinic:doctor": "clinic doctor --autocannon [ / -d 10 ] -- node ./node_modules/.bin/next start",
     "clinic:heap": "clinic heap --autocannon [ / -d 10 ] -- node ./node_modules/.bin/next start",
