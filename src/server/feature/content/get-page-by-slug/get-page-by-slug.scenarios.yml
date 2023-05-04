@@ -1,7 +1,7 @@
 scenarios:
-  - name: get-paths
+  - name: get-page-by-slug
     flow:
       - get:
-          url: "/content/pages/paths"
+          url: "/content/pages/about"
           headers:
             Authorization: "Bearer {{ fastifyApiReadToken }}"
