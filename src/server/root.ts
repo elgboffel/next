@@ -9,6 +9,7 @@ import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
+import caching from "@fastify/caching";
 import { examplePublicRoute } from "@server/feature/example-public/route";
 import { examplePrivateRoute } from "@server/feature/example-private/route";
 
@@ -36,6 +37,8 @@ export default async function (server: FastifyInstance) {
 		max: 100,
 		timeWindow: "1 minute",
 	});
+
+	server.register(caching, { expiresIn: 300 });
 
 	await server.register(swagger);
 	await server.register(swaggerUI, swaggerOptions);
