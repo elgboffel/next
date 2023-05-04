@@ -38,7 +38,10 @@ export default async function (server: FastifyInstance) {
 		timeWindow: "1 minute",
 	});
 
-	server.register(caching, { expiresIn: 300 });
+	/* Register caching and cache headers.
+	   Remember to set correct directives for user specific responses.
+	   https://datatracker.ietf.org/doc/html/rfc2616#section-14.9.1*/
+	server.register(caching, { expiresIn: 300, privacy: caching.privacy.PUBLIC });
 
 	await server.register(swagger);
 	await server.register(swaggerUI, swaggerOptions);
