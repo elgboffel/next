@@ -1,4 +1,5 @@
 ﻿import { WithChildren } from "@infrastructure/types/helpers/with-children";
+import "@styles/global.css";
 
 type RootLayoutProps = WithChildren;
 

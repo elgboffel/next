@@ -1,5 +1,5 @@
 ﻿import { Box } from "@components/primitives/Box/Box";
-import { FC } from "preact/compat";
+import { FC } from "react";
 import { root, TextVariants } from "@components/primitives/Text/text.css";
 import { PrimitiveComponent } from "@infrastructure/types/helpers/primitive-component";
 
