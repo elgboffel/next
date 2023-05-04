@@ -4,9 +4,10 @@ dotenv.config();
 import Fastify, { FastifyInstance } from "fastify";
 import { Server, IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
+import { env } from "@infrastructure/env/server.mjs";
 
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = Fastify({
-	logger: true,
+	logger: env.NODE_ENV === "development",
 });
 
 // Prefix everything with current path

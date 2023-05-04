@@ -1,0 +1,8 @@
+scenarios:
+  - name: hello-with-name
+    flow:
+#      - log: "Current environment is set to: {{ fastifyApiWriteToken }}"
+      - get:
+          url: "/private/hello/test-name"
+          headers:
+            Authorization: "Bearer {{ fastifyApiWriteToken }}"

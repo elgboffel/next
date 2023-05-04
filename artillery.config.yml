@@ -1,15 +1,25 @@
 config:
-  target: "http://localhost:3000/api/serverless"
   phases:
     - duration: 10
-      arrivalRate: 1500
+      arrivalRate: 10
       name: Warm up
-#    - duration: 60
-#      arrivalRate: 5
-#      rampTo: 50
-#      name: Ramp up load
-#    - duration: 600
-#      arrivalRate: 50
-#      name: Sustained load
-  headers:
-    Authorization: "Bearer {{ $processEnvironment.FASTIFY_API_WRITE_TOKEN }}"
+  environments:
+    production:
+      target: "https://fastify-serverless-git-feature-with-fastify-elgboffel.vercel.app/api/serverless"
+      phases:
+        - duration: 2
+          arrivalRate: 10
+          name: Warm up
+        - duration: 10
+          arrivalRate: 20
+          name: Ramp up load
+    local:
+      target: "http://127.0.0.1:3000/api/serverless"
+      phases:
+        - duration: 10
+          arrivalRate: 100
+  variables:
+    fastifyApiWriteToken:
+      - "{{ $processEnvironment.FASTIFY_API_WRITE_TOKEN }}"
+    fastifyApiReadToken:
+      - "{{ $processEnvironment.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN }}"
