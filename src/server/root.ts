@@ -12,6 +12,7 @@ import sensible from "@fastify/sensible";
 import caching from "@fastify/caching";
 import { examplePublicRoute } from "@server/feature/example-public/route";
 import { examplePrivateRoute } from "@server/feature/example-private/route";
+import { contentRoute } from "@server/feature/content/route";
 
 const BEARER_AUTH_READ_ONLY_KEYS = new Set([env.NEXT_PUBLIC_FASTIFY_API_READ_ONLY_TOKEN, env.FASTIFY_API_WRITE_TOKEN]);
 const BEARER_AUTH_WRITE_KEYS = new Set([env.FASTIFY_API_WRITE_TOKEN]);

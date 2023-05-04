@@ -3,3 +3,5 @@ scenarios:
     flow:
       - get:
           url: "/content/pages/paths"
+          headers:
+            Authorization: "Bearer {{ fastifyApiReadToken }}"
