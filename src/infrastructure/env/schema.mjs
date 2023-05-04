@@ -16,6 +16,7 @@ export const serverSchema = z.object({
 	// 	process.env.VERCEL ? z.string() : z.string().url()
 	// ),
 	FASTIFY_API_WRITE_TOKEN: z.string(),
+	ALLOW_ORIGINS: z.string(),
 });
 
 /**
@@ -28,6 +29,7 @@ export const serverEnv = {
 	// NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
 	// NEXTAUTH_URL: process.env.NEXTAUTH_URL,
 	FASTIFY_API_WRITE_TOKEN: process.env.FASTIFY_API_WRITE_TOKEN,
+	ALLOW_ORIGINS: process.env.ALLOW_ORIGINS,
 };
 
 /**
