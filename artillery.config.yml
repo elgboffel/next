@@ -5,13 +5,13 @@ config:
       name: Warm up
   environments:
     production:
-      target: "https://fastify-serverless-git-feature-with-fastify-elgboffel.vercel.app/api/serverless"
+      target: "https://strapi-elgboffel.vercel.app/api/serverless"
       phases:
         - duration: 2
           arrivalRate: 10
           name: Warm up
-        - duration: 10
-          arrivalRate: 20
+        - duration: 5
+          arrivalRate: 1000
           name: Ramp up load
     local:
       target: "http://127.0.0.1:3000/api/serverless"
