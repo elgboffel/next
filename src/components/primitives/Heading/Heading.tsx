@@ -1,5 +1,5 @@
 import { Box } from "@components/primitives/Box/Box";
-import { FC } from "preact/compat";
+import { FC } from "react";
 import { HeadingVariants, root } from "@components/primitives/Heading/heading.css";
 import { PrimitiveComponent } from "@infrastructure/types/helpers/primitive-component";
 
