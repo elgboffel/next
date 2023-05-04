@@ -1,5 +1,8 @@
 scenarios:
   - name: hello-with-name
     flow:
+#      - log: "Current environment is set to: {{ fastifyApiReadToken }}"
       - get:
           url: "/public/hello/test-name"
+          headers:
+            Authorization: "Bearer {{ fastifyApiReadToken }}"

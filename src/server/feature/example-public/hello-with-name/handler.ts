@@ -23,6 +23,5 @@ export const helloWithName: RouteHandler<HelloWithNameHandler> = async (request,
 		const id = chars.slice(-20);
 		return { date, id };
 	};
-
 	reply.status(200).send({ hello: name, payload: payload() });
 };
