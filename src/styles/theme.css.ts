@@ -1,8 +1,8 @@
 ﻿import { createTheme } from "@vanilla-extract/css";
 import { BREAKPOINTS_QUERIES, PX_BASE } from "@styles/config/constants";
-import { vars } from "@styles/config/contract.css";
 import { commonVars } from "@styles/config/common-vars.css";
 import { rem } from "polished";
+import { vars as themeVars } from "@styles/config/contract.css";
 
 /* For name color name generation https://colornamer.robertcooper.me/ have been used */
 export const color = {
@@ -42,7 +42,7 @@ export const fontSize = {
 	text: rem(PX_BASE, PX_BASE),
 };
 
-export const theme = createTheme(vars, {
+export const [themeClass, vars] = createTheme(themeVars, {
 	media: BREAKPOINTS_QUERIES,
 
 	color,
