@@ -50,7 +50,6 @@ yarn-error.log*
 .eslintcache
 
 # Codegen
-src/infrastructure/types/generated*
 schema.graphql
 
 # Turbopack

@@ -9,7 +9,6 @@
     "start": "next start",
     "test": "vitest",
 		"nodebuild": "tsc -p ./node/tsconfig.node-build.json",
-    "codegen:openapi": "dotenv -- cross-var openapi-generator-cli generate -i %CONTENT_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce/checkout --global-property models --additional-properties=supportsES6=true,npmVersion=9.2.0 -a API-Authorization:%CONTENT_READ_ONLY_TOKEN% --skip-validate-spec && npm run codegen:commerce-checkout-replace-backwards-slash && npm run codegen:lint-fix",
     "codegen:graphql": "graphql-codegen -r dotenv/config --config ./graphql-codegen.config.yml && npm run codegen:lint-fix",
     "codegen:commerce": "dotenv -- cross-var openapi-generator-cli generate -i %COMMERCE_SWAGGER_ENDPOINT% -g typescript -o %CODEGEN_ROOT_FOLDER_PATH%/commerce --global-property models --additional-properties=supportsES6=true,npmVersion=9.6.2 && npm run codegen:commerce-replace-backwards-slash && npm run codegen:lint-fix",
     "codegen:commerce-replace-backwards-slash": "node ./node/build/codegen/convert-backwards-slash/index.js",
