@@ -1,3 +1,5 @@
+"use client";
+
 import { useHydrateAtoms } from "jotai/utils";
 import { FC } from "react";
 import { WithChildren } from "@infrastructure/types/helpers/with-children";
